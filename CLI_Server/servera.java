@@ -1,11 +1,12 @@
 import java.rmi.*;
+import java.rmi.server.UnicastRemoteObject;
 
-public class servera {
+public class servera extends UnicastRemoteObject implements serverInterface {
     public servera() throws RemoteException
     {
         System.out.println("An intance has been started...");
     }
-    public double soma(double a, double b) throws RemoteException
+    public double sum (double a, double b) throws RemoteException
     {
         return a+b;
     }
@@ -20,5 +21,10 @@ public class servera {
     public double divide(double a, double b) throws RemoteException
     {
         return a/b;
+    }
+    @Override
+    public double multiplica(double a, double b) throws RemoteException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'multiplica'");
     }
 }
