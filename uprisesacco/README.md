@@ -35,11 +35,17 @@ mvn clean package
 
 java -cp target/classes com.example.UpriseServer
 
+![Screenshot from 2023-07-20 11-49-33](https://github.com/ConradKash/Uprise_Sacco/assets/78595738/698cf308-01fa-4bb5-8e0d-75ae660e296b)
+
+
 
 3. In a new terminal, start the client:
 
 
 java -cp target/classes com.example.UpriseClient
+
+![image](https://github.com/ConradKash/Uprise_Sacco/assets/78595738/a16adc78-6d67-4e3f-81b5-69e601a40bf1)
+
 
 
 ## Usage
