@@ -112,10 +112,22 @@ private static void handleClient(Socket clientSocket) {
                 } else {
                     return "Invalid login format. Usage: login username password";
                 }
+            
             case "deposit":
                 // Handle deposit command
-                // ...
-                break;
+                if (parts.length == 3) {
+                    String memberNumber = parts[1];
+                    double amount = Double.parseDouble(parts[2]);
+                    if (depositAmount(memberNumber, amount)) {
+                        return "Deposit successful.";
+                    } else {
+                        return "Failed to deposit. Member not found.";
+                    }
+                } else {
+                    return "Invalid deposit format. Usage: deposit memberNumber amount";
+            
+                }
+        
             case "checkstatement":
                 // Handle checkStatement command 
                 // ...
@@ -145,5 +157,21 @@ private static void handleClient(Socket clientSocket) {
         }
         return false;
     }
+
+    // Method to handle the deposit amount in the database
+    private static boolean depositAmount(String memberNumber, double amount) {
+    try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO deposits (member_number, amount) VALUES (?, ?)")) {
+
+        preparedStatement.setString(1, memberNumber);
+        preparedStatement.setDouble(2, amount);
+        int rowsAffected = preparedStatement.executeUpdate();
+
+        return rowsAffected > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
 }
 
