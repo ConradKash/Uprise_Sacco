@@ -23,6 +23,15 @@ CREATE TABLE deposits (
     FOREIGN KEY (member_id) REFERENCES members(id)
 );
 
+-- Create the Contribution table
+CREATE TABLE contribution_table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    member_id INT NOT NULL,
+    contribution_period_in_months INT NOT NULL,
+    contribution_status ENUM('cleared', 'pending') DEFAULT 'pending',
+    FOREIGN KEY (member_id) REFERENCES members(id)
+);
+
 -- Create the Loans table
 CREATE TABLE loans (
     id INT AUTO_INCREMENT PRIMARY KEY,
